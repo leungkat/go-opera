@@ -23,6 +23,7 @@ import (
 	"github.com/Fantom-foundation/lachesis-base/kvdb/memorydb"
 	"github.com/Fantom-foundation/lachesis-base/lachesis"
 	"github.com/ethereum/go-ethereum/common"
+	//"launcher/genesiscmd.go"
 )
 
 func main() {
@@ -95,6 +96,8 @@ func main() {
 	})
 
 	print(build)
+
+	//genesiscmd.exportGenesis("test_genesis.g")
 }
 
 /*
