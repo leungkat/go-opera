@@ -1,4 +1,4 @@
-package main
+package launcher
 
 import (
 	"time"
@@ -11,7 +11,6 @@ import (
 	"github.com/Fantom-foundation/go-opera/inter/ier"
 	"github.com/Fantom-foundation/go-opera/opera"
 	"github.com/Fantom-foundation/go-opera/opera/contracts/driver"
-	"github.com/Fantom-foundation/go-opera/opera/contracts/driver/drivercall"
 	"github.com/Fantom-foundation/go-opera/opera/contracts/driverauth"
 	"github.com/Fantom-foundation/go-opera/opera/contracts/evmwriter"
 	"github.com/Fantom-foundation/go-opera/opera/contracts/netinit"
@@ -80,9 +79,7 @@ func main() {
 	var owner common.Address
 
 	blockProc := makegenesis.DefaultBlockProc()
-	validators := makefakegenesis.GetFakeValidators(0)
-	var delegations []drivercall.Delegation
-	genesisTxs := makefakegenesis.GetGenesisTxs(epoch-2, validators, builder.TotalSupply(), delegations, owner)
+	genesisTxs := makefakegenesis.GetGenesisTxs(epoch-2, pos.NewBuilder().Build(), builder.TotalSupply(), 0, owner)
 	err := builder.ExecuteGenesisTxs(blockProc, genesisTxs)
 	if err != nil {
 		panic(err)
@@ -120,22 +117,5 @@ func WriteGenesisStore(rawWriter io.Writer, genesisStore *Store) error {
 		return err
 	}
 	return nil
-}
-*/
-
-/*package main
-
-import (
-	"fmt"
-	"os"
-
-	"github.com/Fantom-foundation/go-opera/cmd/opera/launcher"
-)
-
-func main() {
-	if err := launcher.Launch(os.Args); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
 }
 */
