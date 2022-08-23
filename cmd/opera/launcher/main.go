@@ -92,6 +92,8 @@ func main() {
 	})
 
 	print(build)
+
+	genesiscmd.exportGenesis("test_genesis.g")
 }
 
 /*
